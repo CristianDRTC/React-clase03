@@ -37,30 +37,36 @@ export default function App() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!form.nombre.trim() || !form.telefono.trim()) {
-      alert("Completa al menos Nombre y Teléfono");
-      return;
-    }
     agregarContacto(form);
     setForm({ nombre: "", correo: "", telefono: "", etiqueta: "" });
   };
 
   return (
     <main className="app-container">
-      <h1 className="app-title">Formulario</h1>
+      <h1 className="app-title">Agenda ADSO v2</h1>
+      
+      <p className="contador">
+        Tienes <strong>{contactos.length}</strong> {contactos.length === 1 ? "contacto guardado" : "contactos guardados"}
+      </p>
+
       <FormularioContacto form={form} onChange={onChange} onSubmit={onSubmit} />
+      
       <section className="lista-contactos">
-        {contactos.map((c) => (
-          <ContactoCard
-            key={c.id}
-            id={c.id}
-            nombre={c.nombre}
-            telefono={c.telefono}
-            correo={c.correo}
-            etiqueta={c.etiqueta}
-            onDelete={eliminarContacto}
-          />
-        ))}
+        {contactos.length === 0 ? (
+          <p>No hay contactos en la agenda.</p>
+        ) : (
+          contactos.map((c) => (
+            <ContactoCard
+              key={c.id}
+              id={c.id}
+              nombre={c.nombre}
+              telefono={c.telefono}
+              correo={c.correo}
+              etiqueta={c.etiqueta}
+              onDelete={eliminarContacto}
+            />
+          ))
+        )}
       </section>
     </main>
   );
