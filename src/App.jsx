@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import ContactoCard from "./components/ContactoCard";
 import FormularioContacto from "./components/FormularioContacto";
@@ -14,14 +14,13 @@ const contactosIniciales = [
 ];
 
 export default function App() {
-  const [contactos, setContactos] = useState(() => {
-    const guardados = localStorage.getItem("contactos");
-    return guardados ? JSON.parse(guardados) : contactosIniciales;
+  const [contactos, setContactos] = useState(contactosIniciales);
+  const [form, setForm] = useState({
+    nombre: "",
+    correo: "",
+    telefono: "",
+    etiqueta: "",
   });
-
-  useEffect(() => {
-    localStorage.setItem("contactos", JSON.stringify(contactos));
-  }, [contactos]);
 
   const agregarContacto = (nuevo) => {
     setContactos((prev) => [...prev, { id: Date.now(), ...nuevo }]);
@@ -31,10 +30,25 @@ export default function App() {
     setContactos((prev) => prev.filter((c) => c.id !== id));
   };
 
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setForm((f) => ({ ...f, [name]: value }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!form.nombre.trim() || !form.telefono.trim()) {
+      alert("Completa al menos Nombre y Teléfono");
+      return;
+    }
+    agregarContacto(form);
+    setForm({ nombre: "", correo: "", telefono: "", etiqueta: "" });
+  };
+
   return (
     <main className="app-container">
       <h1 className="app-title">Formulario</h1>
-      <FormularioContacto onAgregar={agregarContacto} />
+      <FormularioContacto form={form} onChange={onChange} onSubmit={onSubmit} />
       <section className="lista-contactos">
         {contactos.map((c) => (
           <ContactoCard
