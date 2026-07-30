@@ -43,7 +43,7 @@ export default function App() {
 
   return (
     <main className="app-container">
-      <h1 className="app-title">Agenda ADSO v2</h1>
+      <h1 className="app-title">Formulario</h1>
       
       <p className="contador">
         Tienes <strong>{contactos.length}</strong> {contactos.length === 1 ? "contacto guardado" : "contactos guardados"}
