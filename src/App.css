@@ -1,0 +1,117 @@
+:root {
+  --azul: #2563eb;
+  --azul-oscuro: #1e3a8a;
+  --naranja: #f59e0b;
+  --crema: #fff7ed;
+  --texto: #334155;
+  --borde: #dbeafe;
+  --blanco: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  background: linear-gradient(135deg, #ffcd8a 0%, #eff6ff 100%);
+  color: var(--texto);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 760px;
+  background: var(--blanco);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
+  border: 1px solid var(--borde);
+}
+
+.app-title {
+  margin: 0 0 20px;
+  color: var(--azul-oscuro);
+  font-size: 2rem;
+}
+
+.form-contacto {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 18px;
+  background: var(--crema);
+  border-radius: 14px;
+  border: 1px solid #fde68a;
+}
+
+.form-contacto input {
+  padding: 10px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.form-contacto input:focus {
+  border-color: var(--azul);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.form-contacto button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--azul) 0%, #3b82f6 100%);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lista-contactos {
+  display: grid;
+  gap: 12px;
+}
+
+.tarjeta-contacto {
+  padding: 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
+  border: 1px solid #c7d2fe;
+}
+
+.tarjeta-contacto h3 {
+  margin: 0 0 8px;
+  color: var(--azul-oscuro);
+}
+
+.tarjeta-contacto p {
+  margin: 4px 0;
+}
+
+.btn-eliminar {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--naranja);
+  color: white;
+  cursor: pointer;
+}
+
+.formulario-contacto {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 5px;
+  margin-top: -15px;
+}
+
+.formulario-contacto h2 {
+  color: #769bff;
+}
