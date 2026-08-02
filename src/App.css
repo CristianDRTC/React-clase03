@@ -1,6 +1,7 @@
 :root {
   --azul: #2563eb;
   --azul-oscuro: #1e3a8a;
+  --azul-suave: #7ab8ff;
   --naranja: #f59e0b;
   --crema: #fff7ed;
   --texto: #334155;
@@ -12,7 +13,7 @@ body {
   margin: 0;
   font-family: 'Times New Roman', Times, serif;
   background: linear-gradient(135deg, #e0fffa 0%, #eff6ff 100%);
-  color: var(--texto);
+  color: #5b8ef7;
 }
 
 #root {
@@ -26,7 +27,7 @@ body {
 
 .app-container {
   width: 100%;
-  max-width: 760px;
+  max-width: 1100px;
   background: var(--blanco);
   border-radius: 20px;
   padding: 28px;
@@ -34,10 +35,29 @@ body {
   border: 1px solid var(--borde);
 }
 
+.panel-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.form-panel,
+.lista-panel {
+  background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
+  border: 1px solid #c7d2fe;
+  border-radius: 18px;
+  padding: 20px;
+}
+
 .app-title {
   margin: 0 0 10px;
   color: var(--azul-oscuro);
   font-size: 2rem;
+}
+
+.saludo-texto {
+  color: var(--azul-suave);
 }
 
 .contador {
@@ -49,7 +69,7 @@ body {
 .form-contacto {
   display: grid;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   padding: 18px;
   background: var(--crema);
   border-radius: 14px;
@@ -84,6 +104,12 @@ body {
   cursor: not-allowed;
 }
 
+.lista-titulo {
+  margin: 0 0 16px;
+  color: var(--azul-oscuro);
+  font-size: 1.5rem;
+}
+
 .lista-contactos {
   display: grid;
   gap: 12px;
@@ -92,8 +118,14 @@ body {
 .tarjeta-contacto {
   padding: 16px;
   border-radius: 14px;
-  background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
+  background: var(--blanco);
   border: 1px solid #c7d2fe;
+}
+
+@media (max-width: 820px) {
+  .panel-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 .tarjeta-contacto h3 {

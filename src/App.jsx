@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import ContactoCard from "./components/ContactoCard";
 import FormularioContacto from "./components/FormularioContacto";
+import Saludo from "./components/Saludo";
 
 const contactosIniciales = [
   {
@@ -43,31 +44,41 @@ export default function App() {
 
   return (
     <main className="app-container">
-      <h1 className="app-title">Formulario</h1>
-      
-      <p className="contador">
-        Tienes <strong>{contactos.length}</strong> {contactos.length === 1 ? "contacto guardado" : "contactos guardados"}
-      </p>
+      <Saludo nombre="Cristian Román" curso="React" />
 
-      <FormularioContacto form={form} onChange={onChange} onSubmit={onSubmit} />
-      
-      <section className="lista-contactos">
-        {contactos.length === 0 ? (
-          <p>No hay contactos en la agenda.</p>
-        ) : (
-          contactos.map((c) => (
-            <ContactoCard
-              key={c.id}
-              id={c.id}
-              nombre={c.nombre}
-              telefono={c.telefono}
-              correo={c.correo}
-              etiqueta={c.etiqueta}
-              onDelete={eliminarContacto}
-            />
-          ))
-        )}
-      </section>
+      <div className="panel-layout">
+        <section className="form-panel">
+          <h1 className="app-title">Formulario</h1>
+
+          <p className="contador">
+            Tienes <strong>{contactos.length}</strong> {contactos.length === 1 ? "contacto guardado" : "contactos guardados"}
+          </p>
+
+          <FormularioContacto form={form} onChange={onChange} onSubmit={onSubmit} />
+        </section>
+
+        <section className="lista-panel">
+          <h2 className="lista-titulo">Registros</h2>
+
+          <div className="lista-contactos">
+            {contactos.length === 0 ? (
+              <p>No hay contactos en la agenda.</p>
+            ) : (
+              contactos.map((c) => (
+                <ContactoCard
+                  key={c.id}
+                  id={c.id}
+                  nombre={c.nombre}
+                  telefono={c.telefono}
+                  correo={c.correo}
+                  etiqueta={c.etiqueta}
+                  onDelete={eliminarContacto}
+                />
+              ))
+            )}
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
