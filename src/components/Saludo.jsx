@@ -1,4 +1,4 @@
-function Saludo({ nombre = "Cristian Román", curso = "React" }) {
+function Saludo({ nombre = "Aprendiz", curso = "React" }) {
     return (
         <div>
             <h2 className="saludo-texto">Hola {nombre}!</h2>
