@@ -1,0 +1,11 @@
+{
+    "contactos": [
+        {
+            "id": "1",
+            "nombre": "Ana Torres",
+            "telefono": "300 123 4567",
+            "correo": "ana.torres@sena.edu.co",
+            "empresa": "SENA CTMA"
+        }
+    ]
+}
