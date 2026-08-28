@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
 :root {
   --azul: #2563eb;
   --azul-oscuro: #1e3a8a;
@@ -8,7 +10,6 @@
   --borde: #dbeafe;
   --blanco: #ffffff;
 }
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root { --bg: #120e17; --panel: #1a1421; --panel-2: #201929; --text: #f1eaf5; --muted: #998caa; --rose: #fb7185; --purple: #a78bfa; --green: #34d399; --amber: #fbbf24; --border: #2a2136; --code: #0f0a15; }
 * { box-sizing: border-box; }
@@ -56,6 +57,11 @@ code, .commit { font-family: 'JetBrains Mono', monospace; }
 .field input:focus { border-color: var(--purple); box-shadow: 0 0 0 2px #a78bfa44; }.field input.error { border-color: var(--rose); }
 .field-error { display: block; margin-top: 3px; color: #e11d48; font-size: .75rem; }
 .alert { margin-bottom: 12px; padding: 10px 12px; border-radius: 7px; }.error-alert { color: #b91c1c; background: #fef2f2; border: 1px solid #fecaca; }
+.contact-tools { display: flex; gap: 8px; margin: 14px 0 10px; flex-wrap: wrap; }
+.contact-tools input { flex: 1 1 220px; min-width: 0; padding: 9px 11px; border: 1px solid #d1d5db; border-radius: 7px; color: #111827; outline: none; }
+.contact-tools input:focus { border-color: var(--purple); box-shadow: 0 0 0 2px #a78bfa44; }
+.contact-tools button { padding: 9px 12px; border: 1px solid #d1d5db; border-radius: 7px; color: #374151; background: white; cursor: pointer; font-weight: 600; }
+.contact-tools button:hover { border-color: var(--purple); color: #7c3aed; }
 .contact { display: flex; justify-content: space-between; gap: 14px; margin-top: 9px; padding: 13px; background: white; border: 1px solid #e5e7eb; border-radius: 8px; }.contact strong { color: #111827; }.contact p { margin: 6px 0 0; color: #4b5563; font-size: .78rem; }.tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 20px; color: #7c3aed; background: #ede9fe; font-size: .7rem; }.danger { align-self: flex-start; padding: 6px 10px; border: 0; border-radius: 6px; color: white; background: #ef4444; cursor: pointer; font-size: .7rem; }
 .checklist, .steps { list-style: none; padding: 0; margin: 0; }.checklist li { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--muted); cursor: pointer; }.checklist li span { width: 18px; height: 18px; border: 1px solid var(--border); border-radius: 4px; text-align: center; color: var(--bg); }.checklist li.done { color: var(--text); text-decoration: line-through; }.checklist li.done span { background: var(--purple); border-color: var(--purple); }.steps li { padding: 10px 0; border-bottom: 1px solid var(--border); color: var(--muted); counter-increment: step; }.steps { counter-reset: step; }.steps li::before { content: counter(step); display: inline-grid; width: 25px; height: 25px; margin-right: 10px; place-items: center; border: 1px solid var(--border); border-radius: 50%; color: var(--rose); }
 .quiz { display: grid; gap: 8px; margin-top: 14px; }.quiz button { padding: 9px 11px; text-align: left; border: 1px solid var(--border); border-radius: 7px; background: var(--code); color: var(--text); cursor: pointer; }.quiz button.correct { border-color: var(--green); color: var(--green); }.quiz button.wrong { border-color: var(--rose); color: var(--rose); }
