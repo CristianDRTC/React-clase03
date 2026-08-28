@@ -1,72 +1,85 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FormularioContacto } from "./components/FormularioContacto";
 import { ContactoCard } from "./components/ContactoCard";
+import "./App.css";
 
-export default function App() {
-  const [mostrarEmpresa, setMostrarEmpresa] = useState(false);
-  const [contactos, setContactos] = useState(() => {
-    const guardados = localStorage.getItem("agenda_adso_v4");
-    return guardados
-      ? JSON.parse(guardados)
-      : [
-          {
-            nombre: "Ana Torres",
-            telefono: "300 123 4567",
-            correo: "ana.torres@sena.edu.co",
-            empresa: "SENA CTMA",
-          },
-        ];
-  });
+function Agenda() {
+  const [contacts, setContacts] = useState([
+    {
+      id: 1,
+      nombre: "Ana Torres",
+      telefono: "300 123 4567",
+      correo: "ana.torres@sena.edu.co",
+      empresa: "SENA",
+    },
+  ]);
+  const [search, setSearch] = useState("");
+  const [order, setOrder] = useState("asc");
 
-  useEffect(() => {
-    localStorage.setItem("agenda_adso_v4", JSON.stringify(contactos));
-  }, [contactos]);
+  const visibleContacts = contacts
+    .filter((contact) =>
+      Object.values(contact).some((value) =>
+        String(value).toLowerCase().startsWith(search.toLowerCase().trim())
+      )
+    )
+    .sort((a, b) =>
+      order === "asc"
+        ? a.nombre.localeCompare(b.nombre)
+        : b.nombre.localeCompare(a.nombre)
+    );
 
-  function agregarContacto(nuevo) {
-    setContactos((prev) => [...prev, nuevo]);
-  }
-
-  function eliminarContacto(correo) {
-    setContactos((prev) => prev.filter((c) => c.correo !== correo));
+  function addContact(contact) {
+    setContacts((current) => [...current, { ...contact, id: Date.now() }]);
   }
 
   return (
-    <main className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-xl mx-auto space-y-6">
-        <header className="text-center">
-          <h1 className="text-3xl font-bold text-purple-700">Agenda ADSO v4</h1>
-          <p className="text-gray-500 text-sm mt-1">
-            Diseño moderno con TailwindCSS
-          </p>
-          <button
-            onClick={() => setMostrarEmpresa(!mostrarEmpresa)}
-            className="mt-3 text-xs bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-full transition"
-          >
-            {mostrarEmpresa ? "Ocultar campo Empresa" : "Activar campo Empresa"}
-          </button>
-        </header>
+    <main className="app-container">
+      <h1 className="app-title">Agenda ADSO</h1>
+      <p className="saludo-texto">Agrega y organiza tus contactos.</p>
 
-        <FormularioContacto
-          onAgregar={agregarContacto}
-          mostrarEmpresa={mostrarEmpresa}
-        />
+      <div className="panel-layout">
+        <section className="form-panel">
+          <h2>Nuevo contacto</h2>
+          <FormularioContacto onAgregar={addContact} mostrarEmpresa />
+        </section>
 
-        <section className="space-y-3">
-          {contactos.map((c) => (
-            <ContactoCard
-              key={c.correo}
-              {...c}
-              onEliminar={eliminarContacto}
-              mostrarEmpresa={mostrarEmpresa}
+        <section className="lista-panel">
+          <h2 className="lista-titulo">Mis contactos</h2>
+          <div className="contact-tools">
+            <input
+              type="search"
+              placeholder="Buscar por inicio..."
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
             />
-          ))}
-          {contactos.length === 0 && (
-            <p className="text-center text-gray-400 text-sm py-4">
-              Sin contactos guardados.
-            </p>
-          )}
+            <button
+              type="button"
+              onClick={() => setOrder(order === "asc" ? "desc" : "asc")}
+            >
+              {order === "asc" ? "A-Z" : "Z-A"}
+            </button>
+          </div>
+
+          <div className="lista-contactos">
+            {visibleContacts.map((contact) => (
+              <ContactoCard
+                key={contact.id}
+                {...contact}
+                mostrarEmpresa
+                onEliminar={(correo) =>
+                  setContacts((current) =>
+                    current.filter((item) => item.correo !== correo)
+                  )
+                }
+              />
+            ))}
+          </div>
         </section>
       </div>
     </main>
   );
+}
+
+export default function App() {
+  return <Agenda />;
 }
